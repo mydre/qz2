@@ -34,6 +34,7 @@ namespace WinAppDemo
 
             int i = 0;
             i++;
+
         }
 
         private void DisplayContent(UserControl uc)
@@ -61,7 +62,10 @@ namespace WinAppDemo
 
         private void BtnZjtq_Click(object sender, EventArgs e)
         {
-            AddNewGjalZj();
+            UcAjgl uc = new UcAjgl();
+            uc.button13.PerformClick();
+           
+         
         }
 
         private void BtnZjzs_Click(object sender, EventArgs e)

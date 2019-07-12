@@ -53,7 +53,10 @@ namespace WinAppDemo.Controls
             //    string Str = File.ReadAllText(filename, Encoding.Default);
             //    Program.m_mainform.g_workPath += Str;
             //}
-            
+    
+
+          
+
         }
     }
 }
