@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.WinContent = new System.Windows.Forms.Panel();
             this.pHeader = new System.Windows.Forms.Panel();
-            this.setDirectory = new System.Windows.Forms.Panel();
             this.btnTools = new System.Windows.Forms.Panel();
             this.btnZjzs = new System.Windows.Forms.Panel();
             this.btnZjtq = new System.Windows.Forms.Panel();
             this.btnAjgl = new System.Windows.Forms.Panel();
+            this.setDirectory = new System.Windows.Forms.Panel();
             this.pHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,18 +65,6 @@
             this.pHeader.Name = "pHeader";
             this.pHeader.Size = new System.Drawing.Size(1284, 60);
             this.pHeader.TabIndex = 0;
-            // 
-            // setDirectory
-            // 
-            this.setDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.setDirectory.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("setDirectory.BackgroundImage")));
-            this.setDirectory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.setDirectory.Location = new System.Drawing.Point(1225, 0);
-            this.setDirectory.Name = "setDirectory";
-            this.setDirectory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.setDirectory.Size = new System.Drawing.Size(59, 57);
-            this.setDirectory.TabIndex = 0;
-            this.setDirectory.Click += new System.EventHandler(this.BtnSet_Click);
             // 
             // btnTools
             // 
@@ -122,6 +110,19 @@
             this.btnAjgl.TabIndex = 0;
             this.btnAjgl.Click += new System.EventHandler(this.BtnAjgl_Click);
             // 
+            // setDirectory
+            // 
+            this.setDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.setDirectory.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("setDirectory.BackgroundImage")));
+            this.setDirectory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.setDirectory.Location = new System.Drawing.Point(1225, 0);
+            this.setDirectory.Name = "setDirectory";
+            this.setDirectory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.setDirectory.Size = new System.Drawing.Size(59, 57);
+            this.setDirectory.TabIndex = 0;
+            this.setDirectory.Click += new System.EventHandler(this.BtnSet_Click);
+            this.setDirectory.Paint += new System.Windows.Forms.PaintEventHandler(this.setDirectory_Paint);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -134,6 +135,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pHeader.ResumeLayout(false);
             this.ResumeLayout(false);
