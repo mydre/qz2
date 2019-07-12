@@ -45,15 +45,20 @@ namespace WinAppDemo.Controls
             //PreProcess.Start();
             //PreProcess.WaitForExit();
 
-            //string filename=Application.StartupPath + "\\phoneModel.txt";
-            ////判断目标文件是否存在
-            //bool flag = File.Exists(filename);
-            //if (flag)
-            //{
-            //    string Str = File.ReadAllText(filename, Encoding.Default);
-            //    Program.m_mainform.g_workPath += Str;
-            //}
-            
+            string filename=Application.StartupPath + "\\phoneModel.txt";
+            //判断目标文件是否存在
+            bool flag = File.Exists(filename);
+            if (flag)
+            {
+                string Str = File.ReadAllText(filename, Encoding.Default);
+                string[] sArray = Str.Split('/');
+
+                Program.m_mainform.g_zjName = sArray[1].Replace("-", "") + DateTime.Now.ToString("yyyyMMddHHmmss");
+                Program.m_mainform.g_workPath += "\\" + Program.m_mainform.g_zjName;
+
+               // File.Delete(filename);
+            }
+
         }
     }
 }

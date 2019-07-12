@@ -21,8 +21,8 @@ namespace WinAppDemo.Db.Model
         [Column("type")]
         public int Type { get; set; }
 
-        [Column("craeteTime")]
-        public string CraeteTime { get; set; }
+        [Column("createTime")]
+        public string CreateTime { get; set; }
 
         [Column("content")]
         public string Content { get; set; }

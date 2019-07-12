@@ -8,17 +8,48 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace WinAppDemo.Controls
 {
     public partial class UcZjtq_SJ_QZ1 : UserControl
     {
+       
+
         public UcZjtq_SJ_QZ1()
         {
             InitializeComponent();
+            Program.m_mainform.checkBaseList.Add("手机基本信息");
         }
-
-        private void Button1_Click(object sender, EventArgs e)
+        
+        private void Button1_Click(object sender, EventArgs e)   //开始提取
         {
+
+            foreach(Control c in this.groupBox1.Controls)
+            {
+                if(c is CheckBox &&((CheckBox)c).Checked==true)
+                {
+                    if(c.Text != "手机基本信息")
+                        Program.m_mainform.checkBaseList.Add(c.Text);
+                }
+            }
+
+            foreach (Control c in this.groupBox2.Controls)
+            {
+                if (c is CheckBox && ((CheckBox)c).Checked == true)
+                {
+                    Program.m_mainform.checkFileList.Add(c.Text);
+                }
+            }
+
+            foreach (Control c in this.groupBox3.Controls)
+            {
+                if (c is CheckBox && ((CheckBox)c).Checked == true)
+                {
+                    Program.m_mainform.checkAppList.Add(c.Text);
+                }
+            }
+
+
             AppContext.GetInstance().m_ucZjtq_sj.Controls.Clear();
 
             AppContext.GetInstance().m_ucZjtq_sj_qz2.Dock = DockStyle.Fill;

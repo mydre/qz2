@@ -18,8 +18,8 @@ namespace WinAppDemo.Db.Model
         [Column("wxID")]
         public string WxId { get; set; }
 
-        [Column("craeteTime")]
-        public string CraeteTime { get; set; }
+        [Column("createTime")]
+        public string CreateTime { get; set; }
 
         [Column("isSend")]
         public int IsSend { get; set; }

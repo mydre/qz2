@@ -44,14 +44,14 @@ namespace WinAppDemo.Controls
         {
             // MessageBox.Show("此处运行微信中转程序！", "提示", MessageBoxButtons.OKCancel);
 
-            Process PreProcess = new Process();
-            PreProcess.StartInfo.Arguments = "D:\\手机取证工作路径设置\\案件20190707093739\\HONORV2020190701094546";  //全路径
-            PreProcess.StartInfo.FileName = Application.StartupPath + "\\BackupConvert.exe";
-            PreProcess.StartInfo.Verb = "runas";
-            PreProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            PreProcess.Start();
+            //Process PreProcess = new Process();
+            //PreProcess.StartInfo.Arguments = "D:\\手机取证工作路径设置\\案件20190707093739\\HONORV2020190701094546";  //全路径
+            //PreProcess.StartInfo.FileName = Application.StartupPath + "\\BackupConvert.exe";
+            //PreProcess.StartInfo.Verb = "runas";
+            //PreProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            //PreProcess.Start();
 
-            PreProcess.WaitForExit();
+            //PreProcess.WaitForExit();
 
             //MessageBox.Show("接着运行微信中转程序！", "提示", MessageBoxButtons.OKCancel);
             ////MessageBox.Show(Application.StartupPath, "提示", MessageBoxButtons.OKCancel);
@@ -66,7 +66,7 @@ namespace WinAppDemo.Controls
             //PreProcess1.WaitForExit(); 
 
             // Thread.Sleep(10000);
-            timer.Stop();
+            //timer.Stop();
         }
 
         private void TimerUp(object sender, System.Timers.ElapsedEventArgs e)

@@ -13,11 +13,24 @@ using WinAppDemo.Controls;
 using WinAppDemo.Db.Base;
 using WinAppDemo.Db.Model;
 using System.Threading;
+using System.Collections;
+using System.Data.SQLite;
+
+
+
 namespace WinAppDemo
 {
     public partial class MainForm : Form
     {
+        public SQLiteConnection g_conn = null;
+
         public string g_workPath="";
+        public string g_ajName = "";   //案件名称
+        public string g_zjName = "";   //证据名称
+
+        public List<string> checkBaseList = new List<string>();   //选中基础信息类列表
+        public List<string> checkFileList = new List<string>();   //选中文件类列表
+        public List<string> checkAppList = new List<string>();    //选中APP类列表
 
         public MainForm()
         {
@@ -117,6 +130,15 @@ namespace WinAppDemo
             }
             setDirectory.BackgroundImage = Properties.Resources.set;
         }
-               
+
+        private void setDirectory_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+          //  g_conn.Close();
+        }
     }
 }

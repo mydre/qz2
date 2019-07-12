@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.111.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.111.0\lib\net46\System.Data.SQLite.dll</HintPath>
@@ -185,6 +186,12 @@
     <Compile Include="Forms\FormGjglZzqk.Designer.cs">
       <DependentUpon>FormGjglZzqk.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormGjglZzss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormGjglZzss.Designer.cs">
+      <DependentUpon>FormGjglZzss.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormGjglZzxx.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGjglZzqk.resx">
       <DependentUpon>FormGjglZzqk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormGjglZzss.resx">
+      <DependentUpon>FormGjglZzss.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGjglZzxx.resx">
       <DependentUpon>FormGjglZzxx.cs</DependentUpon>

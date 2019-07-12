@@ -26,7 +26,8 @@ namespace WinAppDemo.Forms
             textBox2.Text = Guid.NewGuid().ToString();
 
             Program.m_mainform.g_workPath += "\\"+ textBox1.Text;
-            
+            Program.m_mainform.g_ajName = textBox1.Text;
+
         }
 
         private void BtnOk_Click(object sender, EventArgs e)
