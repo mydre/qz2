@@ -45,6 +45,7 @@ namespace WinAppDemo.Controls
             //PreProcess.Start();
             //PreProcess.WaitForExit();
 
+
             string filename=Application.StartupPath + "\\phoneModel.txt";
             //判断目标文件是否存在
             bool flag = File.Exists(filename);
@@ -58,6 +59,18 @@ namespace WinAppDemo.Controls
 
                // File.Delete(filename);
             }
+
+            //string filename=Application.StartupPath + "\\phoneModel.txt";
+            ////判断目标文件是否存在
+            //bool flag = File.Exists(filename);
+            //if (flag)
+            //{
+            //    string Str = File.ReadAllText(filename, Encoding.Default);
+            //    Program.m_mainform.g_workPath += Str;
+            //}
+    
+       
+
 
         }
     }

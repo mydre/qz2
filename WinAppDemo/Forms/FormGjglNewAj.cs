@@ -52,6 +52,7 @@ namespace WinAppDemo.Forms
         {
             this.Close();
             //MessageBox.Show("取消");
+           
         }
 
         delegate void MyDelegate();

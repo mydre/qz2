@@ -11,12 +11,13 @@ using WinAppDemo.Forms;
 using WinAppDemo.Db.Base;
 using WinAppDemo.Db.Model;
 using System.Data.SQLite;
-
+using WinAppDemo.tools;
+using System.Collections;
 namespace WinAppDemo.Controls
 {
     public partial class UcZjzs : UserControl
     {
-              
+
         private List<TreeNodeTypes> Types;
         public UcZjzs()
         {
@@ -24,7 +25,7 @@ namespace WinAppDemo.Controls
         }
 
         private void UcZjzs_Load(object sender, EventArgs e)
-        {             
+        {
             //获取数据文件的路径
             // string dbPath = "Data Source =" + Program.m_mainform.g_workPath + "\\AppData\\Weixin\\ca9529dc14475dbcc7e8553e77ad7d0b" + "\\midwxtrans.db";
             string dbPath = "Data Source =D:\\手机取证工作路径设置\\案件20190707093739\\HONORV2020190701094546\\AppData\\Weixin\\ca9529dc14475dbcc7e8553e77ad7d0b\\midwxtrans.db";// + Program.m_mainform.g_workPath+"\\AppData\\Weixin\\ca9529dc14475dbcc7e8553e77ad7d0b" + "\\midwxtrans.db";
@@ -33,7 +34,7 @@ namespace WinAppDemo.Controls
             Program.m_mainform.g_conn = new SQLiteConnection(dbPath);
             Program.m_mainform.g_conn.Open();
             SQLiteDataAdapter mAdapter = new SQLiteDataAdapter("select * from WXAccount", Program.m_mainform.g_conn);
-            
+
             DataTable dt = new DataTable();
             mAdapter.Fill(dt);
             //绑定数据到DataGridView
@@ -53,6 +54,7 @@ namespace WinAppDemo.Controls
                 new TreeNodeTypes() {Id = 6, Name = @"微信（47\13433\13480）", Value = "6", ParentId = 3},
             };
 
+            //string Name = "";
             using (SqliteDbContext context = new SqliteDbContext())
             {//ca9529dc14475dbcc7e8553e77ad7d0b
              //   context.Database.Connection.ConnectionString = "Data Source="+ "D:\\手机取证工作路径设置\\案件20190707093739\\HONORV2020190701094546\\AppData\\Weixin\\a12788cdac6ba28270d03cc2df9a0122" + "\\midwxtrans.db";
@@ -60,12 +62,13 @@ namespace WinAppDemo.Controls
                 {
                     int index = Types.Count + 1;
                     Types.Add(new TreeNodeTypes() { Id = index, Name = acc.Sign, ParentId = 6, Value = acc.WxId });
-                    Types.Add(new TreeNodeTypes() { Id = index + 1, Name = "好友", ParentId = index, Value = "好友" });
+                    Types.Add(new TreeNodeTypes() { Id = index + 1, Name = "通讯录", ParentId = index, Value = "通讯录" });
                     Types.Add(new TreeNodeTypes() { Id = index + 2, Name = "公众号", ParentId = index, Value = "公众号" });
                     Types.Add(new TreeNodeTypes() { Id = index + 3, Name = "聊天记录", ParentId = index, Value = "聊天记录" });
-                    Types.Add(new TreeNodeTypes() { Id = index + 4, Name = "应用程序", ParentId = index, Value = "应用程序" });
-                    Types.Add(new TreeNodeTypes() { Id = index + 5, Name = "朋友圈", ParentId = index, Value = "朋友圈" });
-                    Types.Add(new TreeNodeTypes() { Id = index + 6, Name = "新朋友", ParentId = index, Value = "新朋友" });
+                    Types.Add(new TreeNodeTypes() { Id = index + 4, Name = "群聊天记录", ParentId = index, Value = "群聊天记录" });
+                    Types.Add(new TreeNodeTypes() { Id = index + 5, Name = "应用程序", ParentId = index, Value = "应用程序" });
+                    Types.Add(new TreeNodeTypes() { Id = index + 6, Name = "朋友圈", ParentId = index, Value = "朋友圈" });
+                    Types.Add(new TreeNodeTypes() { Id = index + 7, Name = "新朋友", ParentId = index, Value = "新朋友" });
                 });
             }
 
@@ -110,6 +113,7 @@ namespace WinAppDemo.Controls
             }
 
             int AppNum = Program.m_mainform.checkAppList.Count;
+
             if (AppNum > 0)
             {
                 TreeNode nodeApp = new TreeNode("APP列表");
@@ -182,7 +186,7 @@ namespace WinAppDemo.Controls
 
             switch (wxid)
             {
-                case "好友":
+                case "通讯录":
                     {
                         panel1.Hide();
                         panel3.Hide();
@@ -200,7 +204,7 @@ namespace WinAppDemo.Controls
                         break;
                     }
                 case "公众号":
-                    { 
+                    {
                         panel1.Hide();
                         panel3.Hide();
                         panel2.Show();
@@ -235,12 +239,15 @@ namespace WinAppDemo.Controls
                     }
                 case "聊天记录":
                     {
+                        Name = "聊天记录";
                         panel1.Hide();
                         panel2.Hide();
                         panel3.Show();
+                        dataGridView2.Show();
                         panel3.Dock = DockStyle.Fill;
 
                         this.dataGridView2.Rows.Clear();
+                        this.richTextBoxEx1.Clear();
                         using (SqliteDbContext context = new SqliteDbContext())
                         {
                             this.dataGridView2.Rows.AddRange(
@@ -249,7 +256,60 @@ namespace WinAppDemo.Controls
                                 .Select(new Func<WxFriend, DataGridViewRow>((f) =>
                                 {
                                     var row = new DataGridViewRow();
-                                    row.CreateCells(this.dataGridView2, new[] {null, f.NickName, context.WxMessages.Count(m => m.WxId == f.WxId).ToString() });
+                                    row.CreateCells(this.dataGridView2, new[] { f.NickName, context.WxMessages.Count(m => m.WxId == f.WxId).ToString() });
+                                    return row;
+                                }))
+                                .ToArray());
+                        }
+
+                        break;
+                    }
+                case "群聊天记录":
+                    {
+                        panel1.Hide();
+                        panel2.Hide();
+                        panel3.Show();
+                        dataGridView2.Show();
+                        panel3.Dock = DockStyle.Fill;
+
+                        this.dataGridView2.Rows.Clear();
+                        this.richTextBoxEx1.Clear();
+                        using (SqliteDbContext context = new SqliteDbContext())
+                        {
+                            this.dataGridView2.Rows.AddRange(
+                                context.WxFriends
+                                .Where(friend => friend.Type == 4)
+                                .Select(new Func<WxFriend, DataGridViewRow>((f) =>
+                                {
+                                    var row = new DataGridViewRow();
+                                    row.CreateCells(this.dataGridView2, new[] { f.NickName, context.WxMessages.Count(m => m.WxId == f.WxId).ToString() });
+                                    return row;
+                                }))
+                                .ToArray());
+                        }
+
+                        break;
+                    }
+                case "朋友圈":
+                    {
+                        Name = "朋友圈";
+                        panel1.Hide();
+                        panel2.Hide();
+                        panel3.Show();
+                        dataGridView2.Show();
+                        panel3.Dock = DockStyle.Fill;
+
+                        this.dataGridView2.Rows.Clear();
+                        this.richTextBoxEx1.Clear();
+                        using (SqliteDbContext context = new SqliteDbContext())
+                        {
+                            this.dataGridView2.Rows.AddRange(
+                                context.WxFriends
+                                .Where(friend => friend.Type == 3)
+                                .Select(new Func<WxFriend, DataGridViewRow>((f) =>
+                                {
+                                    var row = new DataGridViewRow();
+                                    row.CreateCells(this.dataGridView2, new[] { f.NickName, context.WxSns.Count(s => s.WxId == f.WxId).ToString() });
                                     return row;
                                 }))
                                 .ToArray());
@@ -340,42 +400,108 @@ namespace WinAppDemo.Controls
 
             using (SqliteDbContext context = new SqliteDbContext())
             {
-                richTextBox1.Clear();
+                richTextBoxEx1.Clear();
                 string nickName = this.dataGridView2.Rows[e.RowIndex].Cells[0].Value as string;
                 WxFriend friend = context.WxFriends.FirstOrDefault(f => f.NickName == nickName);//仅查找一条数据
+                WxAccount account = context.WxAccounts.FirstOrDefault(a => a.Id == 1);
+
                 if (friend == null)//如果没有找到
                 {
                     return;
                 }
-
-                var messages = context.WxMessages //
-                    .Where(m => m.WxId == friend.WxId)
-                    .OrderBy(m => m.CreateTime)
-                    .ToList();
-
-                messages.ForEach(m =>
+                if (Name == "聊天记录")
                 {
-                    if (m.IsSend == 1)
-                    {
-                        richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
-                        richTextBox1.SelectionColor = Color.DimGray;
-                        richTextBox1.AppendText($"{m.CreateTime}\n");
-                        richTextBox1.SelectionColor = Color.Red;
-                    }
-                    else
-                    {
-                        richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
-                        richTextBox1.SelectionColor = Color.DimGray;
-                        richTextBox1.AppendText($"{m.CreateTime}\n");
-                        richTextBox1.SelectionColor = Color.Blue;
-                    }
+                    //（treeView1.selectedNode.Name == “name1”）
+                    var messages = context.WxMessages //
+                        .Where(m => m.WxId == friend.WxId)
+                        .OrderBy(m => m.CreateTime)
+                        .ToList();
 
-                    richTextBox1.SelectionBackColor = Color.WhiteSmoke;
-                    richTextBox1.AppendText($"{m.Content}\n\n");
-                });
+                    messages.ForEach(m =>
+                    {
+                        if (m.IsSend == 1)
+                        {
+                            richTextBoxEx1.SelectionAlignment = HorizontalAlignment.Right;
+                            richTextBoxEx1.SelectionColor = Color.DimGray;
+                            richTextBoxEx1.SelectionBackColor = Color.WhiteSmoke;
+                            richTextBoxEx1.AppendText("(");
+                            richTextBoxEx1.AppendText($"{account.NickName}");
+                            richTextBoxEx1.AppendText(")");
+                            richTextBoxEx1.AppendText($"{account.WxId}");
+                            System.Drawing.Image img = System.Drawing.Image.FromFile(@"D:\UDisk\avator" + account.AvatarPath);
+                            Bitmap bmp = new Bitmap(img, 25, 22);
+                            Clipboard.SetDataObject(bmp);
+                            DataFormats.Format dataFormat =
+                            DataFormats.GetFormat(DataFormats.Bitmap);
+                            if (richTextBoxEx1.CanPaste(dataFormat))
+                                richTextBoxEx1.Paste(dataFormat);
+                            richTextBoxEx1.AppendText("\n");
+                            richTextBoxEx1.SelectionColor = Color.Red;
+                        }
+                        else
+                        {
+                            richTextBoxEx1.SelectionAlignment = HorizontalAlignment.Left;
+                            richTextBoxEx1.SelectionColor = Color.DimGray;
+                            richTextBoxEx1.SelectionBackColor = Color.Blue;
+                            System.Drawing.Image img = System.Drawing.Image.FromFile(@"D:\UDisk\avator" + friend.AvatarPath);
+                            Bitmap bmp = new Bitmap(img, 25, 22);
+                            Clipboard.SetDataObject(bmp);
+                            DataFormats.Format dataFormat =
+                            DataFormats.GetFormat(DataFormats.Bitmap);
+                            if (richTextBoxEx1.CanPaste(dataFormat))
+                                richTextBoxEx1.Paste(dataFormat);
+                            richTextBoxEx1.AppendText("(");
+                            richTextBoxEx1.AppendText($"{friend.NickName}");
+                            richTextBoxEx1.AppendText(")");
+                            richTextBoxEx1.AppendText($"{m.WxId}\n");
+                        }
+                        //在sqlite的message表里面，有的对话的path字段含有空格，需要使用Replace进行去除
+                        if (string.IsNullOrEmpty(m.Path.Replace(" ", "")))//message是单纯的对话消息 或者 是含有url链接的消息
+                        {
+                            SelectUrl.print_msg_or_url(m.Content, richTextBoxEx1);//该方法在打印message内容的同时能够识别url
+                            //Console.WriteLine("是对话或者链接："+m.Content);
+                        }
+                        else//说明message是文件类型的消息，这时候应当能够点击链接并打开文件
+                        {
+                            //Console.WriteLine("文件类型：" + m.Content);
+                            SelectUrl.print_file(m.Path,richTextBoxEx1);
+                        }
+                        richTextBoxEx1.AppendText($"{m.CreateTime}\n\n\n");
+                    });
+                }
+                else if (Name == "朋友圈")
+                {
+                    var sns = context.WxSns
+                          .Where(s => s.WxId == friend.WxId)
+                          .OrderBy(s => s.CreateTime)
+                          .ToList();
+
+                    sns.ForEach(s =>
+                    {
+                        richTextBoxEx1.SelectionAlignment = HorizontalAlignment.Left;
+                        richTextBoxEx1.SelectionColor = Color.DimGray;
+                        System.Drawing.Image img = System.Drawing.Image.FromFile(@"D:\UDisk\avator" + friend.AvatarPath);
+                        Bitmap bmp = new Bitmap(img, 25, 22);
+                        Clipboard.SetDataObject(bmp);
+                        DataFormats.Format dataFormat =
+                        DataFormats.GetFormat(DataFormats.Bitmap);
+                        if (richTextBoxEx1.CanPaste(dataFormat))
+                            richTextBoxEx1.Paste(dataFormat);
+                        richTextBoxEx1.AppendText("(");
+                        richTextBoxEx1.AppendText($"{friend.NickName}");
+                        richTextBoxEx1.AppendText(")");
+                        richTextBoxEx1.AppendText($"{s.WxId}\n");
+
+                        richTextBoxEx1.SelectionColor = Color.Blue;
+                        richTextBoxEx1.AppendText($"{s.Content}\n");
+                        richTextBoxEx1.AppendText($"{s.CreateTime}\n\n\n\n");
+
+
+                        richTextBoxEx1.SelectionBackColor = Color.WhiteSmoke;
+
+                    });
+                }
             }
-            
-
 
         }
 
@@ -491,8 +617,8 @@ namespace WinAppDemo.Controls
             //    }
             //}
 
-          //  treeView2.ExpandAll();
-          
+            //  treeView2.ExpandAll();
+
 
             //SQLiteDataAdapter mAdapter = new SQLiteDataAdapter("select * from WXAccount", Program.m_mainform.g_conn);
             //DataTable dt = new DataTable();
@@ -505,7 +631,38 @@ namespace WinAppDemo.Controls
             //panel3.Hide(); 
             //dataGridView3.Show();
             //dataGridView3.Dock = DockStyle.Fill;
-            
+
+        }
+
+        public System.Diagnostics.Process p = new System.Diagnostics.Process();
+
+        private void richTextBoxEx1_LinkClicked(object sender, LinkClickedEventArgs e)//RichTextBox的点击事件
+        {
+
+            /*
+             设置根目录，从message表的path字段中取出的值诸如：
+             \com.tencent.mm\MicroMsg\9a444f2bffa22236d9e4313dc93683c8\video\1652293005198de450297040.mp4
+             \com.tencent.mm\MicroMsg\9a444f2bffa22236d9e4313dc93683c8\voice2\e1\7a\msg_2216490530198de4502faaa104.amr
+             \tencent\MicroMsg\Download\rcontact.txt
+             但是，这只是一个相对的路径(可以把它称为绝对路径的后一部分)，需要进行拼接形成完整的路径
+             */
+            string baseDir = "D:";//假设baseDir是绝对路径的前一部分
+            string like = e.LinkText;
+            int index = like.IndexOf('\\');//如果链接中含有反斜杠，说明这是一个文件
+            if(index != -1)//如果是文件
+            {//文件
+                string file_dir = string.Format("{0}{1}", baseDir, like.Substring(index));//把前一部分和后一部分拼接成绝对路径
+                //Console.WriteLine(file_dir);
+                string result = WechatLinkFile.display_file(file_dir);//打开文件
+                if(result != "")
+                {
+                    MessageBox.Show(string.Format("{0}{1}\n{2}", "打开文件异常：",file_dir, result));
+                }
+            }else
+            {//如果是url链接
+                WechatLinkFile.display_url(like);
+            }
+
         }
     }
 

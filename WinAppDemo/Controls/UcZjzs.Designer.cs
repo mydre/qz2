@@ -37,24 +37,13 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.treeView2 = new System.Windows.Forms.TreeView();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.ck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.WxName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wxIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accountIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.signDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nickNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.districtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wxFriendBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -66,6 +55,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCode = new System.Windows.Forms.Label();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.richTextBoxEx1 = new WinAppDemo.tools.RichTextBoxEx();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wxIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accountIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.signDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nickNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.districtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wxFriendBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,13 +72,13 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wxFriendBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wxFriendBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -182,22 +181,9 @@
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeView2_AfterSelect);
             // 
-            // dataGridView3
-            // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.AllowUserToDeleteRows = false;
-            this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.ReadOnly = true;
-            this.dataGridView3.RowTemplate.Height = 23;
-            this.dataGridView3.Size = new System.Drawing.Size(576, 563);
-            this.dataGridView3.TabIndex = 15;
-            // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.richTextBox1);
+            this.panel3.Controls.Add(this.richTextBoxEx1);
             this.panel3.Controls.Add(this.dataGridView2);
             this.panel3.Location = new System.Drawing.Point(3, 191);
             this.panel3.Name = "panel3";
@@ -205,22 +191,11 @@
             this.panel3.TabIndex = 14;
             this.panel3.Visible = false;
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(436, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(140, 191);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
-            // 
             // dataGridView2
             // 
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ck,
             this.WxName,
             this.Count});
             this.dataGridView2.Cursor = System.Windows.Forms.Cursors.Default;
@@ -229,20 +204,10 @@
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(436, 191);
+            this.dataGridView2.Size = new System.Drawing.Size(241, 191);
             this.dataGridView2.TabIndex = 2;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView2_CellContentClick);
-            // 
-            // ck
-            // 
-            this.ck.HeaderText = "";
-            this.ck.Name = "ck";
-            this.ck.ReadOnly = true;
-            this.ck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ck.Width = 50;
             // 
             // WxName
             // 
@@ -299,59 +264,6 @@
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column1.Width = 50;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // wxIdDataGridViewTextBoxColumn
-            // 
-            this.wxIdDataGridViewTextBoxColumn.DataPropertyName = "WxId";
-            this.wxIdDataGridViewTextBoxColumn.HeaderText = "微信号";
-            this.wxIdDataGridViewTextBoxColumn.Name = "wxIdDataGridViewTextBoxColumn";
-            this.wxIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // accountIdDataGridViewTextBoxColumn
-            // 
-            this.accountIdDataGridViewTextBoxColumn.DataPropertyName = "AccountId";
-            this.accountIdDataGridViewTextBoxColumn.HeaderText = "账户";
-            this.accountIdDataGridViewTextBoxColumn.Name = "accountIdDataGridViewTextBoxColumn";
-            this.accountIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
-            this.phoneDataGridViewTextBoxColumn.HeaderText = "手机号";
-            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // signDataGridViewTextBoxColumn
-            // 
-            this.signDataGridViewTextBoxColumn.DataPropertyName = "Sign";
-            this.signDataGridViewTextBoxColumn.HeaderText = "名称";
-            this.signDataGridViewTextBoxColumn.Name = "signDataGridViewTextBoxColumn";
-            this.signDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nickNameDataGridViewTextBoxColumn
-            // 
-            this.nickNameDataGridViewTextBoxColumn.DataPropertyName = "NickName";
-            this.nickNameDataGridViewTextBoxColumn.HeaderText = "昵称";
-            this.nickNameDataGridViewTextBoxColumn.Name = "nickNameDataGridViewTextBoxColumn";
-            this.nickNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // districtDataGridViewTextBoxColumn
-            // 
-            this.districtDataGridViewTextBoxColumn.DataPropertyName = "District";
-            this.districtDataGridViewTextBoxColumn.HeaderText = "地址";
-            this.districtDataGridViewTextBoxColumn.Name = "districtDataGridViewTextBoxColumn";
-            this.districtDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // wxFriendBindingSource
-            // 
-            this.wxFriendBindingSource.DataSource = typeof(WinAppDemo.Db.Model.WxFriend);
             // 
             // panel1
             // 
@@ -457,6 +369,82 @@
             this.lblCode.TabIndex = 13;
             this.lblCode.Text = "wuyunjing002";
             // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.RowTemplate.Height = 23;
+            this.dataGridView3.Size = new System.Drawing.Size(576, 563);
+            this.dataGridView3.TabIndex = 15;
+            // 
+            // richTextBoxEx1
+            // 
+            this.richTextBoxEx1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxEx1.Location = new System.Drawing.Point(241, 0);
+            this.richTextBoxEx1.Name = "richTextBoxEx1";
+            this.richTextBoxEx1.Size = new System.Drawing.Size(335, 191);
+            this.richTextBoxEx1.TabIndex = 3;
+            this.richTextBoxEx1.Text = "";
+            this.richTextBoxEx1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxEx1_LinkClicked);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // wxIdDataGridViewTextBoxColumn
+            // 
+            this.wxIdDataGridViewTextBoxColumn.DataPropertyName = "WxId";
+            this.wxIdDataGridViewTextBoxColumn.HeaderText = "微信号";
+            this.wxIdDataGridViewTextBoxColumn.Name = "wxIdDataGridViewTextBoxColumn";
+            this.wxIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // accountIdDataGridViewTextBoxColumn
+            // 
+            this.accountIdDataGridViewTextBoxColumn.DataPropertyName = "AccountId";
+            this.accountIdDataGridViewTextBoxColumn.HeaderText = "账户";
+            this.accountIdDataGridViewTextBoxColumn.Name = "accountIdDataGridViewTextBoxColumn";
+            this.accountIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // phoneDataGridViewTextBoxColumn
+            // 
+            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
+            this.phoneDataGridViewTextBoxColumn.HeaderText = "手机号";
+            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
+            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // signDataGridViewTextBoxColumn
+            // 
+            this.signDataGridViewTextBoxColumn.DataPropertyName = "Sign";
+            this.signDataGridViewTextBoxColumn.HeaderText = "名称";
+            this.signDataGridViewTextBoxColumn.Name = "signDataGridViewTextBoxColumn";
+            this.signDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nickNameDataGridViewTextBoxColumn
+            // 
+            this.nickNameDataGridViewTextBoxColumn.DataPropertyName = "NickName";
+            this.nickNameDataGridViewTextBoxColumn.HeaderText = "昵称";
+            this.nickNameDataGridViewTextBoxColumn.Name = "nickNameDataGridViewTextBoxColumn";
+            this.nickNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // districtDataGridViewTextBoxColumn
+            // 
+            this.districtDataGridViewTextBoxColumn.DataPropertyName = "District";
+            this.districtDataGridViewTextBoxColumn.HeaderText = "地址";
+            this.districtDataGridViewTextBoxColumn.Name = "districtDataGridViewTextBoxColumn";
+            this.districtDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // wxFriendBindingSource
+            // 
+            this.wxFriendBindingSource.DataSource = typeof(WinAppDemo.Db.Model.WxFriend);
+            // 
             // UcZjzs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -475,14 +463,14 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wxFriendBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wxFriendBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -494,27 +482,15 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblCode;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.BindingSource wxFriendBindingSource;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+
+        public System.Windows.Forms.TreeView treeView2;
+        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ck;
         private System.Windows.Forms.DataGridViewTextBoxColumn WxName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
@@ -524,7 +500,20 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn signDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nickNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn districtDataGridViewTextBoxColumn;
-        public System.Windows.Forms.TreeView treeView2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCode;
         public System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.TreeView treeView1;
+        private tools.RichTextBoxEx richTextBoxEx1;
     }
+    
 }

@@ -10,8 +10,13 @@ namespace WinAppDemo.tools
 {
     class WechatLinkFile
     {
-        public static string display(string path_filename)
+        public static string display_file(string path_filename)
         {
+            if (!File.Exists(path_filename))//首要任务：判断文件是否存在
+            {
+                return "文件不存在！";
+            }
+
             //string str = @"D:\Test - 副本\手机数据取证系统\a.b\c.d";
             string[] sArray = path_filename.Split('.');
             int len = sArray.Length;
@@ -22,10 +27,7 @@ namespace WinAppDemo.tools
             {
                 try
                 {
-                    //打开WORD
-                    Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
-                    app.Visible = true;
-                    app.Documents.Open(path_filename);
+                    System.Diagnostics.Process.Start(path_filename);
                 }
                 catch (Exception ex)
                 {
@@ -72,6 +74,19 @@ namespace WinAppDemo.tools
                     Console.WriteLine("打开文件异常：" + ex.ToString());
                     return ex.ToString();
                 }
+            }
+            return "";
+        }
+        public static string display_url(string url)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(url);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("打开url异常：" + ex.ToString());
+                return ex.ToString();
             }
             return "";
         }
